@@ -1,0 +1,139 @@
+<title>DingThats Fonts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a type-foundry catalogue sheet — masthead, family switcher, live tester, keycap glyph grid */
+:root {
+  --paper: #eceff4; --sheet: #f8f9fb; --ink: #15171d; --muted: #5b6272; --rule: #d3d8e2;
+  --accent: #2443e8; --mark: #ffe14d; --cap: #ffffff; --capEdge: #c4cad6;
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0f1117; --sheet: #171a22; --ink: #e8eaf1; --muted: #9aa1b2; --rule: #2a2f3b;
+  --accent: #8fa2ff; --mark: #6b5a00; --cap: #222631; --capEdge: #3a4050; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0f1117; --sheet: #171a22; --ink: #e8eaf1; --muted: #9aa1b2; --rule: #2a2f3b;
+  --accent: #8fa2ff; --mark: #6b5a00; --cap: #222631; --capEdge: #3a4050; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font: 400 15px/1.55 var(--body); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 40px 64px; display: grid; gap: 28px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 800 clamp(44px, 9vw, 104px)/.9 var(--display); letter-spacing: -.035em; margin: 0; text-wrap: balance; }
+h1 .ding { margin-left: .12em; font-family: "DT-objects", var(--display); font-weight: 400; color: var(--accent); }
+.lede { max-width: 62ch; color: var(--muted); margin: 0; }
+.lede b { color: var(--ink); font-weight: 500; }
+.strip { font-size: clamp(28px, 5vw, 46px); line-height: 1.2; letter-spacing: .12em; overflow-wrap: anywhere; color: var(--ink); }
+nav { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid var(--rule); padding-bottom: 14px; }
+nav button { font: 500 14px/1 var(--body); padding: 10px 16px; border-radius: 999px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); cursor: pointer; }
+nav button[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+nav button:focus-visible, .cell:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 14px; padding: 22px; display: grid; gap: 18px; min-width: 0; }
+.fam-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 20px; }
+.fam-head h2 { font: 800 30px/1.1 var(--display); margin: 0; letter-spacing: -.02em; }
+.fam-head p { margin: 0; color: var(--muted); max-width: 60ch; }
+.meta { font: 500 12px/1.4 var(--mono); color: var(--muted); }
+.tester { display: grid; gap: 10px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.controls label { font: 500 12px/1 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; display: flex; gap: 8px; align-items: center; }
+textarea { width: 100%; box-sizing: border-box; font: 400 15px/1.4 var(--mono); padding: 10px 12px; border-radius: 8px; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); resize: vertical; min-height: 44px; }
+.out { overflow-x: auto; padding: 14px 4px; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule); white-space: pre; line-height: 1; color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px; }
+.cell { display: grid; grid-template-rows: 80px auto; gap: 6px; padding: 10px 8px 9px; border: 1px solid var(--rule); border-radius: 10px; background: var(--sheet); color: var(--ink); cursor: pointer; text-align: left; font: inherit; }
+.cell:hover { border-color: var(--accent); }
+.cell .g { font-size: 54px; line-height: 80px; text-align: center; white-space: pre; }
+.cell .k { display: flex; align-items: center; gap: 7px; min-width: 0; }
+kbd { font: 500 12px/1 var(--mono); min-width: 14px; text-align: center; padding: 4px 6px 5px; border-radius: 5px; background: var(--cap); border: 1px solid var(--capEdge); border-bottom-width: 3px; color: var(--ink); }
+.cell .l { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); font: 500 13px/1 var(--body); padding: 10px 14px; border-radius: 8px; }
+footer { color: var(--muted); font-size: 13px; display: grid; gap: 6px; max-width: 70ch; }
+footer code { font-family: var(--mono); font-size: 12px; background: var(--sheet); border: 1px solid var(--rule); padding: 1px 5px; border-radius: 4px; }
+@media (max-width: 520px) { .sheet { padding: 16px; } .grid { grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); } .cell .g { font-size: 44px; } }
+@media (prefers-reduced-motion: no-preference) { .cell { transition: border-color .15s, transform .15s; } .cell:active { transform: scale(.97); } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">dingthat.com · Open Font License 1.1 · v1.000</div>
+    <h1>DingThats<span class="ding">h</span></h1>
+    <p class="lede">Three free picture fonts. Type a letter, get a symbol: <b>GUI</b> for box drawing and interface widgets, <b>Shapes</b> for arrows, checks and controls, <b>Objects</b> for buildings, transport and everyday things. Click any glyph to copy its key.</p>
+  </header>
+  <nav role="tablist" id="tabs"></nav>
+  <section class="sheet" id="sheet">
+    <div class="fam-head"><h2 id="famName"></h2><span class="meta" id="famMeta"></span></div>
+    <p id="famDesc" class="lede"></p>
+    <div class="tester">
+      <div class="controls">
+        <label for="size">Size <input type="range" id="size" min="16" max="120" value="56"></label>
+        <span class="meta" id="sizeVal">56 px</span>
+      </div>
+      <textarea id="text" rows="2" aria-label="Text to preview"></textarea>
+      <div class="out" id="out"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+  <footer>
+    <div>Use on the web: <code>@font-face { font-family: "DingThats Objects"; src: url(DingThatsObjects-Regular.woff2) }</code>, then put plain letters in an element with that font.</div>
+    <div>Standard symbols are also mapped to their real Unicode positions, so <code>┌─┐ ★ ✈ ☎</code> render correctly as well. Add <code>aria-hidden="true"</code> to decorative icons.</div>
+  </footer>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const DATA = /*DATA*/null;
+const DESC = {
+  gui: "Single, double, mixed and rounded box drawing laid out as a grid on the keyboard (q w e / a s d / z x c), shade blocks, classic PC symbols and interface widgets. Monospaced, so frames tile cleanly.",
+  shapes: "Geometric solids, outlines, checks, crosses, maths, media controls and UI symbols. Heavy arrows follow the number pad: 8 up, 2 down, 4 left, 6 right.",
+  objects: "Houses, offices, shops and civic buildings; cars, buses, trains, planes and boats; office kit, everyday objects and weather."
+};
+const SAMPLE = {
+  gui: "qrrrrrrwrrrrrre\nf pvIO f ;:'\" f\narrrrrrsrrrrrrd\nf 1234 fK__++Lf\nzrrrrrrxrrrrrrc",
+  shapes: "8 6 2 4  v x  k h  ; : '  + - = /",
+  objects: "h o s f   c b t a 3   e d F C"
+};
+const toB = s => Uint8Array.from(atob(s), c => c.charCodeAt(0)).buffer;
+const order = ["gui", "shapes", "objects"];
+let cur = "gui";
+try { const s = localStorage.getItem("dt-tab"); if (order.includes(s)) cur = s; } catch (e) {}
+if (order.includes(location.hash.slice(1))) cur = location.hash.slice(1);
+const texts = {...SAMPLE};
+const $ = id => document.getElementById(id);
+
+Promise.all(order.map(k => new FontFace("DT-" + k, toB(DATA[k].woff2)).load().then(f => document.fonts.add(f)))).catch(() => {});
+document.querySelector("h1 .ding").style.fontFamily = '"DT-objects", sans-serif';
+$("tabs").innerHTML = order.map(k => `<button role="tab" id="tab-${k}" data-k="${k}">${DATA[k].family.replace("DingThats ", "")}</button>`).join("");
+$("tabs").onclick = e => { const b = e.target.closest("button"); if (b) { cur = b.dataset.k; try { localStorage.setItem("dt-tab", cur); } catch (e) {} render(); } };
+
+function esc(s) { return s.replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c])); }
+function render() {
+  const d = DATA[cur];
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.k === cur));
+  $("famName").textContent = d.family;
+  $("famMeta").textContent = `${d.glyphs.length} glyphs · ${d.mono ? "monospaced" : "proportional"}`;
+  $("famDesc").textContent = DESC[cur];
+  $("text").value = texts[cur];
+  $("out").style.fontFamily = `"DT-${cur}", monospace`;
+  $("grid").innerHTML = d.glyphs.map(g => {
+    const ch = g.k || String.fromCodePoint(g.u[0]);
+    const cap = g.k ? (g.k === " " ? "space" : esc(g.k)) : "U+" + g.u[0].toString(16).toUpperCase().padStart(4, "0");
+    return `<button class="cell" data-c="${esc(ch)}" title="${esc(g.l)}"><span class="g" style="font-family:'DT-${cur}'">${esc(ch)}</span><span class="k"><kbd>${cap}</kbd><span class="l">${esc(g.l)}</span></span></button>`;
+  }).join("");
+  draw();
+}
+function draw() { $("out").textContent = $("text").value; $("out").style.fontSize = $("size").value + "px"; $("sizeVal").textContent = $("size").value + " px"; }
+$("text").oninput = () => { texts[cur] = $("text").value; draw(); };
+$("size").oninput = draw;
+let tt;
+function toast(m) { $("toast").textContent = m; $("toast").hidden = false; clearTimeout(tt); tt = setTimeout(() => $("toast").hidden = true, 1400); }
+$("grid").onclick = async e => {
+  const b = e.target.closest(".cell"); if (!b) return;
+  const c = b.dataset.c;
+  texts[cur] += c; $("text").value = texts[cur]; draw();
+  try { await navigator.clipboard.writeText(c); toast(`Copied “${c}” and added it to the tester`); }
+  catch (err) { toast(`Added “${c}” to the tester`); }
+};
+render();
+</script>
