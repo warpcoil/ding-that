@@ -1,4 +1,4 @@
-"""DingThats Objects — buildings, transport and everyday objects (solid style).
+"""Ding That Objects — buildings, transport and everyday objects (solid style).
 Drawn in a local 0..800 square (centre 400,400), shifted into the em."""
 from dt import *
 
@@ -269,7 +269,7 @@ gs.add("flag", "0", [0x2691], flag, "flag")
 
 if __name__ == "__main__":
     import preview
-    out = build(gs, "DingThats Objects", "DingThatsObjects", "build/fonts")
+    out = build(gs, "Ding That Objects", "DingThatObjects", "build/fonts")
     export_svgs(gs, "build/svg/objects")
-    preview.specimen(gs, out["ttf"], "build/objects_specimen.png", "DingThats Objects")
+    preview.specimen(gs, out["ttf"], "build/objects_specimen.png", "Ding That Objects")
     print(len(gs.glyphs), out)

@@ -1,0 +1,185 @@
+<!-- wp:paragraph -->
+<p>How to install the Ding That fonts and use them in documents, on websites and in WordPress.</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"className":"is-style-dt-toc"} -->
+<ul class="wp-block-list is-style-dt-toc"><!-- wp:list-item -->
+<li><a href="#download">Download</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#install">Install</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#documents">Use them in documents</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#boxes">Draw boxes with the GUI font</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#web">Use them on a website</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#wordpress">Use them in WordPress</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#accessibility">Make them accessible</a></li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><a href="#problems">If something looks wrong</a></li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading {"anchor":"download"} -->
+<h2 id="download" class="wp-block-heading">Download</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p><a href="{{DOWNLOAD_URL}}">Download the zip</a> and unzip it. The <code>fonts</code> folder has one folder per font, each with an <code>.otf</code>, a <code>.ttf</code> and a <code>.woff2</code> file. The <code>svg</code> folder has every glyph as a picture.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"anchor":"install"} -->
+<h2 id="install" class="wp-block-heading">Install</h2>
+<!-- /wp:heading -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Windows</h3>
+<!-- /wp:heading -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Open the <code>fonts</code> folder and the folder for the font you want.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Right-click <code>DingThat…-Regular.otf</code> and choose <strong>Install</strong>, or <strong>Install for all users</strong>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Restart any app that was already open.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">macOS</h3>
+<!-- /wp:heading -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Double-click <code>DingThat…-Regular.otf</code>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>In Font Book, choose <strong>Install</strong>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Restart any app that was already open.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Linux</h3>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Copy the <code>.otf</code> files to <code>~/.local/share/fonts</code>, then run <code>fc-cache -f</code>.</p>
+<!-- /wp:paragraph -->
+<!-- wp:group {"className":"is-style-dt-notice","layout":{"type":"default"}} -->
+<div class="wp-block-group is-style-dt-notice"><!-- wp:paragraph -->
+<p>Install one format only. If you install both the <code>.otf</code> and the <code>.ttf</code> of the same font, some apps show it twice.</p>
+<!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+<!-- wp:heading {"anchor":"documents"} -->
+<h2 id="documents" class="wp-block-heading">Use them in documents</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Choose <strong>Ding That GUI</strong>, <strong>Ding That Shapes</strong> or <strong>Ding That Objects</strong> from the font menu, then type. Change the size and colour the same way as any text. The <a href="/fonts/">Fonts page</a> lists the key for every glyph.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Google Docs and other web apps can only use their own font lists, so installed fonts don’t appear there. Use the SVG files instead: insert them as images.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"anchor":"boxes"} -->
+<h2 id="boxes" class="wp-block-heading">Draw boxes with the GUI font</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Set the line spacing to single, or exactly 1.0, so the lines touch. Then use the keys laid out like the box:</p>
+<!-- /wp:paragraph -->
+<!-- wp:html -->
+<pre class="dt-boxdraw" role="img" aria-label="A box split into four panes, drawn with the GUI font.">qrwre
+f f f
+arsrd
+f f f
+zrxrc</pre>
+<!-- /wp:html -->
+<!-- wp:paragraph -->
+<p>Typed as:</p>
+<!-- /wp:paragraph -->
+<!-- wp:code -->
+<pre class="wp-block-code"><code>qrwre
+f f f
+arsrd
+f f f
+zrxrc</code></pre>
+<!-- /wp:code -->
+<!-- wp:paragraph -->
+<p>Hold Shift for double lines. <kbd>r</kbd> is a horizontal line and <kbd>f</kbd> a vertical one.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"anchor":"web"} -->
+<h2 id="web" class="wp-block-heading">Use them on a website</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Upload the <code>.woff2</code> files to your site, then add them to your stylesheet:</p>
+<!-- /wp:paragraph -->
+<!-- wp:code -->
+<pre class="wp-block-code"><code>@font-face {
+  font-family: &quot;Ding That Objects&quot;;
+  src: url(&quot;/fonts/DingThatObjects-Regular.woff2&quot;) format(&quot;woff2&quot;);
+  font-display: block;
+}
+.ding { font-family: &quot;Ding That Objects&quot;; }</code></pre>
+<!-- /wp:code -->
+<!-- wp:paragraph -->
+<p>Then put the key inside an element with that class:</p>
+<!-- /wp:paragraph -->
+<!-- wp:code -->
+<pre class="wp-block-code"><code>&lt;span class=&quot;ding&quot; aria-hidden=&quot;true&quot;&gt;h&lt;/span&gt; Home</code></pre>
+<!-- /wp:code -->
+<!-- wp:heading {"anchor":"wordpress"} -->
+<h2 id="wordpress" class="wp-block-heading">Use them in WordPress</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>This site’s theme includes the three fonts and a <code>[ding]</code> shortcode. Use it in any Shortcode block or paragraph:</p>
+<!-- /wp:paragraph -->
+<!-- wp:code -->
+<pre class="wp-block-code"><code>[ding font=&quot;objects&quot; key=&quot;h&quot;]
+[ding font=&quot;shapes&quot; key=&quot;v&quot; label=&quot;Done&quot;]</code></pre>
+<!-- /wp:code -->
+<!-- wp:paragraph -->
+<p>Without a label, the glyph is decorative and hidden from screen readers. With a label, screen readers announce the label instead of the letter.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"anchor":"accessibility"} -->
+<h2 id="accessibility" class="wp-block-heading">Make them accessible</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>A screen reader reads the letter you typed, not the picture. So if a glyph is decoration, hide it with <code>aria-hidden="true"</code>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>If a glyph carries meaning on its own, such as a check mark in a table, give it a text label, or write the meaning next to it.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Don’t use a dingbat font for long text or for the only copy of important information.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Text like ┌─┐, ★ or ✈ that uses the real Unicode symbols is read by its Unicode name, for example “black star”.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading {"anchor":"problems"} -->
+<h2 id="problems" class="wp-block-heading">If something looks wrong</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Letters show instead of pictures.</strong> The text isn’t set in a Ding That font, or the font isn’t installed. Select the text and choose the font again.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Gaps between box lines.</strong> Set line spacing to single, or exactly 1.0, and paragraph spacing to 0.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Boxes don’t line up.</strong> Use Ding That GUI for every character in the drawing, including spaces.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The font doesn’t appear in an app.</strong> Restart the app. If it still doesn’t appear, the app may not use installed fonts.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->

@@ -1,4 +1,4 @@
-<title>DingThats Fonts</title>
+<title>Ding That Fonts</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@ footer code { font-family: var(--mono); font-size: 12px; background: var(--sheet
 <div class="wrap">
   <header>
     <div class="eyebrow">dingthat.com · Open Font License 1.1 · v1.000</div>
-    <h1>DingThats<span class="ding">h</span></h1>
+    <h1>Ding That<span class="ding">h</span></h1>
     <p class="lede">Three free picture fonts. Type a letter, get a symbol: <b>GUI</b> for box drawing and interface widgets, <b>Shapes</b> for arrows, checks and controls, <b>Objects</b> for buildings, transport and everyday things. Click any glyph to copy its key.</p>
   </header>
   <nav role="tablist" id="tabs"></nav>
@@ -76,7 +76,7 @@ footer code { font-family: var(--mono); font-size: 12px; background: var(--sheet
     <div class="grid" id="grid"></div>
   </section>
   <footer>
-    <div>Use on the web: <code>@font-face { font-family: "DingThats Objects"; src: url(DingThatsObjects-Regular.woff2) }</code>, then put plain letters in an element with that font.</div>
+    <div>Use on the web: <code>@font-face { font-family: "Ding That Objects"; src: url(DingThatObjects-Regular.woff2) }</code>, then put plain letters in an element with that font.</div>
     <div>Standard symbols are also mapped to their real Unicode positions, so <code>┌─┐ ★ ✈ ☎</code> render correctly as well. Add <code>aria-hidden="true"</code> to decorative icons.</div>
   </footer>
 </div>
@@ -104,7 +104,7 @@ const $ = id => document.getElementById(id);
 
 Promise.all(order.map(k => new FontFace("DT-" + k, toB(DATA[k].woff2)).load().then(f => document.fonts.add(f)))).catch(() => {});
 document.querySelector("h1 .ding").style.fontFamily = '"DT-objects", sans-serif';
-$("tabs").innerHTML = order.map(k => `<button role="tab" id="tab-${k}" data-k="${k}">${DATA[k].family.replace("DingThats ", "")}</button>`).join("");
+$("tabs").innerHTML = order.map(k => `<button role="tab" id="tab-${k}" data-k="${k}">${DATA[k].family.replace("Ding That ", "")}</button>`).join("");
 $("tabs").onclick = e => { const b = e.target.closest("button"); if (b) { cur = b.dataset.k; try { localStorage.setItem("dt-tab", cur); } catch (e) {} render(); } };
 
 function esc(s) { return s.replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c])); }

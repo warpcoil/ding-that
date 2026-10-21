@@ -1,12 +1,12 @@
-# DingThats fonts v1.000
+# Ding That fonts v1.000
 
 Three free, open-source dingbat fonts from [dingthat.com](https://dingthat.com).
 
 | Font | What's in it | Glyphs |
 |---|---|---|
-| **DingThats GUI** | Box drawing (single, double, mixed, rounded), shade blocks, classic PC symbols, GUI widgets. Monospaced; box characters tile seamlessly. | 111 |
-| **DingThats Shapes** | Arrows, triangles, squares, circles, stars, checks, crosses, media controls and UI symbols. | 94 |
-| **DingThats Objects** | Buildings, vehicles and transport, office and everyday objects, weather. | 62 |
+| **Ding That GUI** | Box drawing (single, double, mixed, rounded), shade blocks, classic PC symbols, GUI widgets. Monospaced; box characters tile seamlessly. | 111 |
+| **Ding That Shapes** | Arrows, triangles, squares, circles, stars, checks, crosses, media controls and UI symbols. | 94 |
+| **Ding That Objects** | Buildings, vehicles and transport, office and everyday objects, weather. | 62 |
 
 ## How to type them
 
@@ -29,8 +29,8 @@ Every glyph sits on a keyboard key (shown below), and where a matching Unicode s
 ## Web use
 
 ```css
-@font-face { font-family: 'DingThats Objects'; src: url('DingThatsObjects-Regular.woff2') format('woff2'); }
-.icon { font-family: 'DingThats Objects'; }
+@font-face { font-family: 'Ding That Objects'; src: url('DingThatObjects-Regular.woff2') format('woff2'); }
+.icon { font-family: 'Ding That Objects'; }
 ```
 
 ```html
@@ -41,9 +41,9 @@ For accessibility, add `aria-hidden="true"` to decorative icons and give meaning
 
 ## License
 
-Copyright 2026 The DingThats Project Authors (https://dingthat.com). Licensed under the SIL Open Font License 1.1 — see `OFL.txt`. Free to use, embed, modify and redistribute; the fonts may not be sold on their own.
+Copyright 2026 The Ding That Project Authors (https://dingthat.com). Licensed under the SIL Open Font License 1.1 — see `OFL.txt`. Free to use, embed, modify and redistribute; the fonts may not be sold on their own.
 
-## DingThats GUI — character map
+## Ding That GUI — character map
 
 | Key | Glyph | Also mapped to |
 |---|---|---|
@@ -159,7 +159,7 @@ Copyright 2026 The DingThats Project Authors (https://dingthat.com). Licensed un
 | `\|` | dropdown | U+E017 Private Use |
 | `` ` `` | resize grip | U+E018 Private Use |
 
-## DingThats Shapes — character map
+## Ding That Shapes — character map
 
 | Key | Glyph | Also mapped to |
 |---|---|---|
@@ -258,7 +258,7 @@ Copyright 2026 The DingThats Project Authors (https://dingthat.com). Licensed un
 | `~` | backspace | U+232B Erase To The Left |
 | `_` | return | U+23CE Return Symbol |
 
-## DingThats Objects — character map
+## Ding That Objects — character map
 
 | Key | Glyph | Also mapped to |
 |---|---|---|

@@ -1,0 +1,76 @@
+<!-- wp:paragraph -->
+<p>Ding That is open source. You can read how every glyph is drawn, build the fonts yourself, and suggest changes.</p>
+<!-- /wp:paragraph -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://github.com/warpcoil/ding-that">View the source on GitHub</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Licence</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>The fonts are released under the <a href="https://openfontlicense.org">SIL Open Font License 1.1</a>. In short:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>You can use the fonts for free, in personal and commercial work.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>You can embed them in documents, apps and websites, and bundle them with software, including software you sell.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>You can change them and share your changes, under the same licence.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>You can’t sell the fonts on their own.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>When you share the font files, include the licence file.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>The full text is in <code>OFL.txt</code> in the download and in the <a href="https://github.com/warpcoil/ding-that">repository</a>.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How it’s built</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Each glyph is drawn in Python from simple shapes (rectangles, circles, polygons and arcs) joined with boolean operations.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><code>fontTools</code> compiles the outlines into OTF, TTF and WOFF2 files, and <code>skia-pathops</code> does the boolean operations.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Every font file is checked with the OpenType Sanitizer, the same checker web browsers use.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Build it yourself</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>You need Python 3. In the repository’s <code>source</code> folder, run:</p>
+<!-- /wp:paragraph -->
+<!-- wp:code -->
+<pre class="wp-block-code"><code>pip install fonttools skia-pathops brotli pillow
+python3 package.py</code></pre>
+<!-- /wp:code -->
+<!-- wp:paragraph -->
+<p>The fonts, SVG files and specimens are written to the <code>dist</code> folder.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Contributing</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>New glyphs, fixes and ideas are welcome. <a href="https://github.com/warpcoil/ding-that/issues">Open an issue</a> to discuss an idea, or send a pull request.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">This website</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>This site uses WordPress with the Astra theme and a Ding That child theme. The theme’s text fonts are Atkinson Hyperlegible Next and JetBrains Mono, both under the SIL Open Font License 1.1, and it uses the three Ding That fonts for the glyph pictures.</p>
+<!-- /wp:paragraph -->

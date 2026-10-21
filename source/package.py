@@ -4,11 +4,11 @@ import gui, shapes, objects, preview
 from dt import build, export_svgs
 
 V = "1.000"
-DIST = f"dist/DingThats-{V}"
+DIST = f"dist/DingThat-{V}"
 shutil.rmtree("dist", ignore_errors=True)
-FAMS = [("gui", "DingThats GUI", "DingThatsGUI", gui.gs, True),
-        ("shapes", "DingThats Shapes", "DingThatsShapes", shapes.gs, False),
-        ("objects", "DingThats Objects", "DingThatsObjects", objects.gs, False)]
+FAMS = [("gui", "Ding That GUI", "DingThatGUI", gui.gs, True),
+        ("shapes", "Ding That Shapes", "DingThatShapes", shapes.gs, False),
+        ("objects", "Ding That Objects", "DingThatObjects", objects.gs, False)]
 
 OFL = open("OFL_body.txt").read()
 
@@ -20,7 +20,7 @@ def uname(cp):
         return "Private Use" if 0xE000 <= cp <= 0xF8FF else ""
 
 
-readme = [f"# DingThats fonts v{V}\n",
+readme = [f"# Ding That fonts v{V}\n",
           "Three free, open-source dingbat fonts from [dingthat.com](https://dingthat.com).\n",
           "| Font | What's in it | Glyphs |", "|---|---|---|"]
 data = {}
@@ -52,12 +52,12 @@ readme += ["", "## How to type them", "",
            "- `specimens/*.png` – glyph charts", "- `specimen.html` – interactive specimen + type tester (open in a browser)",
            "- `source/` – the Python that draws and compiles everything (`python3 package.py`, needs `fonttools skia-pathops brotli pillow`)", "",
            "## Web use", "", "```css",
-           "@font-face { font-family: 'DingThats Objects'; src: url('DingThatsObjects-Regular.woff2') format('woff2'); }",
-           ".icon { font-family: 'DingThats Objects'; }", "```", "",
+           "@font-face { font-family: 'Ding That Objects'; src: url('DingThatObjects-Regular.woff2') format('woff2'); }",
+           ".icon { font-family: 'Ding That Objects'; }", "```", "",
            "```html", "<span class=\"icon\">h</span> Home  <span class=\"icon\">e</span> Contact", "```", "",
            "For accessibility, add `aria-hidden=\"true\"` to decorative icons and give meaningful ones an `aria-label`.", "",
            "## License", "",
-           "Copyright 2026 The DingThats Project Authors (https://dingthat.com). "
+           "Copyright 2026 The Ding That Project Authors (https://dingthat.com). "
            "Licensed under the SIL Open Font License 1.1 — see `OFL.txt`. Free to use, embed, modify and redistribute; "
            "the fonts may not be sold on their own.", ""]
 for slug, fam, ps, gs, mono in FAMS:
@@ -73,7 +73,7 @@ for slug, fam, ps, gs, mono in FAMS:
 
 open(f"{DIST}/README.md", "w").write("\n".join(readme))
 open(f"{DIST}/OFL.txt", "w").write(
-    "Copyright 2026 The DingThats Project Authors (https://dingthat.com)\n\n" + OFL)
+    "Copyright 2026 The Ding That Project Authors (https://dingthat.com)\n\n" + OFL)
 os.makedirs(f"{DIST}/source", exist_ok=True)
 for f in ("dt.py", "gui.py", "shapes.py", "objects.py", "preview.py", "package.py", "OFL_body.txt", "specimen_template.html"):
     shutil.copy(f, f"{DIST}/source/")
@@ -83,5 +83,5 @@ tpl = open("specimen_template.html").read()
 open(f"{DIST}/specimen.html", "w").write(
     "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
     + tpl.replace("/*DATA*/null", json.dumps(data)) + "</html>")
-shutil.make_archive(DIST, "zip", "dist", f"DingThats-{V}")
+shutil.make_archive(DIST, "zip", "dist", f"DingThat-{V}")
 print("ok", DIST)

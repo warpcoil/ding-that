@@ -1,4 +1,4 @@
-Copyright 2026 The DingThats Project Authors (https://dingthat.com)
+Copyright 2026 The Ding That Project Authors (https://dingthat.com)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

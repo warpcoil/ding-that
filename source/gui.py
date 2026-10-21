@@ -1,4 +1,4 @@
-"""DingThats GUI — box drawing, blocks, classic PC symbols and GUI widgets (monospace)."""
+"""Ding That GUI — box drawing, blocks, classic PC symbols and GUI widgets (monospace)."""
 from dt import *
 
 W = 600                 # advance (monospace)
@@ -256,9 +256,9 @@ gs.add("resizeGrip", "`", [next(PUA)], grip, "resize grip")
 
 if __name__ == "__main__":
     import preview
-    out = build(gs, "DingThats GUI", "DingThatsGUI", "build/fonts", mono=True)
+    out = build(gs, "Ding That GUI", "DingThatGUI", "build/fonts", mono=True)
     export_svgs(gs, "build/svg/gui")
-    preview.specimen(gs, out["ttf"], "build/gui_specimen.png", "DingThats GUI")
+    preview.specimen(gs, out["ttf"], "build/gui_specimen.png", "Ding That GUI")
     preview.tile_test(out["ttf"], "build/gui_tile.png", [
         "QRRRRWRRRRE  qrrrwrrre  iro  trrrrytrru",
         "F    F    F  f   f   f  f f  f    f    f",

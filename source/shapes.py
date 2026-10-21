@@ -1,4 +1,4 @@
-"""DingThats Shapes — arrows, geometry, checks, crosses, media and UI symbols (solid style).
+"""Ding That Shapes — arrows, geometry, checks, crosses, media and UI symbols (solid style).
 Glyphs are drawn in a local 0..800 square (centre 400,400) and shifted into the em."""
 from dt import *
 
@@ -179,7 +179,7 @@ gs.add("return", "_", [0x23CE], ret, "return")
 
 if __name__ == "__main__":
     import preview
-    out = build(gs, "DingThats Shapes", "DingThatsShapes", "build/fonts")
+    out = build(gs, "Ding That Shapes", "DingThatShapes", "build/fonts")
     export_svgs(gs, "build/svg/shapes")
-    preview.specimen(gs, out["ttf"], "build/shapes_specimen.png", "DingThats Shapes")
+    preview.specimen(gs, out["ttf"], "build/shapes_specimen.png", "Ding That Shapes")
     print(len(gs.glyphs), out)

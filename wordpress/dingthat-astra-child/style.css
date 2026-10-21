@@ -1,0 +1,1079 @@
+/*
+Theme Name:   Ding That
+Theme URI:    https://dingthat.com/
+Description:  Accessible child theme for Astra, made for dingthat.com, home of the free Ding That dingbat fonts. Atkinson Hyperlegible Next, JetBrains Mono and the three Ding That fonts are self-hosted, so pages make no requests to Google. Colours meet WCAG 2.2 AA, with a dark scheme that follows the visitor's system setting, visible focus rings, forced-colours support and reduced motion. Includes block patterns, block styles, a glyph shortcode and page content for the Ding That site.
+Author:       Ding That
+Author URI:   https://dingthat.com/
+Template:     astra
+Version:      1.0.0
+Requires at least: 6.3
+Requires PHP: 7.4
+License:      GNU General Public License v2 or later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  dingthat
+Tags:         custom-colors, block-patterns, block-styles
+*/
+
+/* ==========================================================================
+   1. Fonts (self-hosted, SIL Open Font License; see fonts/OFL-*.txt)
+   ========================================================================== */
+@font-face {
+	font-family: "Atkinson Hyperlegible Next";
+	src: url("fonts/AtkinsonHyperlegibleNext-Variable.woff2") format("woff2");
+	font-weight: 200 800;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Atkinson Hyperlegible Next";
+	src: url("fonts/AtkinsonHyperlegibleNext-Italic-Variable.woff2") format("woff2");
+	font-weight: 200 800;
+	font-style: italic;
+	font-display: swap;
+}
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("fonts/JetBrainsMono-Variable.woff2") format("woff2");
+	font-weight: 100 800;
+	font-style: normal;
+	font-display: swap;
+}
+/* The Ding That fonts themselves. "block" avoids showing letters before the pictures load. */
+@font-face {
+	font-family: "Ding That GUI";
+	src: url("fonts/DingThatGUI-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: block;
+}
+@font-face {
+	font-family: "Ding That Shapes";
+	src: url("fonts/DingThatShapes-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: block;
+}
+@font-face {
+	font-family: "Ding That Objects";
+	src: url("fonts/DingThatObjects-Regular.woff2") format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: block;
+}
+
+/* ==========================================================================
+   2. Tokens. Astra's nine global colours point at these, so the Customizer
+      palette, the block editor and the front end stay in step.
+   ========================================================================== */
+:root {
+	--dt-brand: #5B3CC4;        /* links, buttons, focus */
+	--dt-brand-hover: #432A99;
+	--dt-ink: #17141F;          /* headings */
+	--dt-text: #2E2A38;         /* body */
+	--dt-surface: #F5F3FA;      /* bands, footer */
+	--dt-paper: #FFFFFF;
+	--dt-line: #E1DCEB;         /* decorative borders */
+	--dt-muted: #4A4458;        /* secondary text */
+	--dt-tint: #F0ECFD;         /* notices */
+	--dt-tint-line: #CFC4F5;
+	--dt-on-brand: #FFFFFF;
+	--dt-band: #1F1547;         /* dark band background */
+	--dt-band-text: #E3DCF7;
+	--dt-band-link: #C9B8FF;
+	--dt-dot: rgba(91, 60, 196, 0.18);        /* hero dot grid */
+	--dt-cap: #FFFFFF;                         /* keycaps */
+	--dt-cap-edge: #B9B2C8;
+
+	/* One colour per font family, for the decorative chips. */
+	--dt-tag-gui: #5B3CC4;      /* GUI: violet */
+	--dt-tag-shapes: #B0306A;   /* Shapes: raspberry */
+	--dt-tag-objects: #1F7A5A;  /* Objects: green */
+	--dt-tag-file: #4A4458;     /* file formats: grey */
+
+	--dt-font: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+	--dt-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+	--dt-wrap: 1200px;
+	--dt-gutter: clamp(16px, 4vw, 24px);
+	--dt-radius: 12px;
+
+	--ast-global-color-0: var(--dt-brand);
+	--ast-global-color-1: var(--dt-brand-hover);
+	--ast-global-color-2: var(--dt-ink);
+	--ast-global-color-3: var(--dt-text);
+	--ast-global-color-4: var(--dt-surface);
+	--ast-global-color-5: var(--dt-paper);
+	--ast-global-color-6: var(--dt-line);
+	--ast-global-color-7: var(--dt-muted);
+	--ast-global-color-8: var(--dt-tint);
+
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--dt-brand: #B7A6FF;
+		--dt-brand-hover: #D3C8FF;
+		--dt-ink: #FFFFFF;
+		--dt-text: #E8E5EF;
+		--dt-surface: #1B1726;
+		--dt-paper: #121019;
+		--dt-line: #2E2840;
+		--dt-muted: #B3ABC4;
+		--dt-tint: #241C3D;
+		--dt-tint-line: #4A3A82;
+		--dt-on-brand: #121019;
+		--dt-band: #120C2B;
+		--dt-band-text: #E3DCF7;
+		--dt-band-link: #C9B8FF;
+		--dt-dot: rgba(183, 166, 255, 0.13);
+		--dt-cap: #221D30;
+		--dt-cap-edge: #4A4260;
+		color-scheme: dark;
+	}
+	/* The logo wordmark is dark ink; flip it for dark pages. The violet tile flips back to violet. */
+	.custom-logo, .site-logo-img img { filter: invert(1) hue-rotate(180deg); }
+}
+
+/* ==========================================================================
+   3. Base
+   ========================================================================== */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: clip; }
+
+body,
+button,
+input,
+select,
+textarea,
+.ast-button,
+.ast-custom-button {
+	font-family: var(--dt-font);
+}
+body {
+	background-color: var(--dt-paper);
+	color: var(--dt-text);
+	font-size: 18px;
+	font-size: 1.125rem;
+	line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6,
+.entry-content :where(h1, h2, h3, h4, h5, h6),
+.site-title, .site-title a {
+	font-family: var(--dt-font);
+	font-weight: 700;
+	color: var(--dt-ink);
+	line-height: 1.2;
+}
+h1, .entry-content h1 { font-size: clamp(2.125rem, 4vw, 3rem); letter-spacing: -0.02em; line-height: 1.1; }
+h2, .entry-content h2 { font-size: clamp(1.75rem, 3vw, 2rem); letter-spacing: -0.01em; }
+h3, .entry-content h3 { font-size: clamp(1.3rem, 2vw, 1.45rem); line-height: 1.3; }
+h4, .entry-content h4 { font-size: 1.2rem; line-height: 1.35; }
+.entry-content :where(h2) { margin-top: 2.2em; margin-bottom: 0.5em; }
+.entry-content :where(h3) { margin-top: 1.6em; margin-bottom: 0.4em; }
+.entry-content > :first-child { margin-top: 0; }
+
+.entry-content p,
+.entry-content li { max-width: 70ch; }
+
+/* Links: underlined in running text, thicker on hover. */
+a { color: var(--dt-brand); }
+a:hover, a:focus { color: var(--dt-brand-hover); }
+.entry-content a:where(:not(.wp-block-button__link, .wp-element-button)),
+.site-footer .widget a,
+.site-footer .footer-widget-area a {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+.entry-content a:where(:not(.wp-block-button__link, .wp-element-button)):hover {
+	text-decoration-thickness: 3px;
+}
+
+/* One focus style everywhere. */
+:focus { outline: none; }
+:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+.wp-block-button__link:focus-visible,
+.ast-custom-button:focus-visible,
+.menu-toggle:focus-visible {
+	outline: 3px solid var(--dt-brand) !important;
+	outline-offset: 3px !important;
+	box-shadow: none;
+	border-radius: 4px;
+}
+
+/* Skip link: Astra prints it; make it obvious when focused. */
+.skip-link.screen-reader-text:focus {
+	clip: auto !important;
+	clip-path: none;
+	height: auto;
+	width: auto;
+	left: 16px;
+	top: 16px;
+	z-index: 100000;
+	padding: 12px 18px;
+	background: var(--dt-ink);
+	color: var(--dt-paper);
+	font-size: 1rem;
+	font-weight: 700;
+	border-radius: 8px;
+	text-decoration: none;
+}
+
+::selection { background: var(--dt-tint); color: var(--dt-ink); }
+
+code, kbd, pre, samp, tt { font-family: var(--dt-mono); font-size: 0.88em; font-variant-ligatures: none; }
+.wp-block-code {
+	padding: 16px 20px;
+	border: 1px solid var(--dt-line);
+	border-radius: 10px;
+	background: var(--dt-surface);
+	color: var(--dt-ink);
+	overflow-x: auto;
+}
+.wp-block-code code { padding: 0; background: none; font-size: 0.9375rem; }
+:not(pre) > code {
+	padding: 0.1em 0.35em;
+	border-radius: 4px;
+	background: var(--dt-surface);
+	color: var(--dt-ink);
+}
+kbd {
+	display: inline-block;
+	padding: 0 0.4em;
+	border: 1px solid var(--dt-cap-edge);
+	border-bottom-width: 2px;
+	border-radius: 4px;
+	background: var(--dt-cap);
+	color: var(--dt-ink);
+	line-height: 1.5;
+}
+
+hr, .wp-block-separator {
+	border: 0;
+	border-top: 1px solid var(--dt-line);
+	opacity: 1;
+}
+
+/* ==========================================================================
+   4. Header (Astra header builder)
+   ========================================================================== */
+.site-header,
+.ast-primary-header-bar,
+.main-header-bar,
+.ast-mobile-header-wrap .ast-primary-header-bar {
+	background-color: var(--dt-paper);
+	border-bottom: 1px solid var(--dt-line);
+}
+.site-title a,
+.site-title a:hover { color: var(--dt-ink); text-decoration: none; letter-spacing: -0.01em; }
+
+.main-header-menu .menu-link,
+.ast-builder-menu .menu-item > .menu-link {
+	min-height: 44px;
+	display: flex;
+	align-items: center;
+	color: var(--dt-ink);
+	font-weight: 700;
+	font-size: 1rem;
+	text-decoration: none;
+}
+.main-header-menu .menu-link:hover,
+.ast-builder-menu .menu-item > .menu-link:hover { color: var(--dt-brand); }
+.main-header-menu .current-menu-item > .menu-link,
+.main-header-menu .current_page_item > .menu-link,
+.ast-builder-menu .current-menu-item > .menu-link {
+	color: var(--dt-brand);
+	text-decoration: underline;
+	text-decoration-thickness: 3px;
+	text-underline-offset: 10px;
+}
+
+/* Header button element ("Download the fonts"). */
+.ast-header-button-1 .ast-custom-button,
+.ast-header-button-1 .ast-custom-button-link .ast-custom-button {
+	min-height: 48px;
+	display: inline-flex;
+	align-items: center;
+	padding: 0 20px;
+	border-radius: 8px;
+	border: 0;
+	background-color: var(--dt-brand);
+	color: var(--dt-on-brand);
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1.2;
+}
+.ast-header-button-1 .ast-custom-button:hover { background-color: var(--dt-brand-hover); color: var(--dt-on-brand); }
+
+/* Mobile menu toggle: a labelled button, not a bare icon. */
+.menu-toggle,
+.ast-mobile-menu-trigger-minimal,
+.ast-mobile-menu-trigger-outline,
+.ast-mobile-menu-trigger-fill {
+	min-height: 48px;
+	min-width: 48px;
+	border: 2px solid var(--dt-ink) !important;
+	border-radius: 8px !important;
+	background: var(--dt-paper) !important;
+	color: var(--dt-ink) !important;
+}
+.menu-toggle .ast-mobile-svg { fill: var(--dt-ink); }
+.ast-mobile-header-content,
+.ast-mobile-popup-drawer .ast-mobile-popup-inner {
+	background-color: var(--dt-paper);
+}
+.ast-mobile-header-content .menu-link,
+.ast-mobile-popup-drawer .menu-link { min-height: 48px; border-color: var(--dt-line) !important; }
+
+/* ==========================================================================
+   5. Page title band (inner pages)
+   ========================================================================== */
+.page .entry-header,
+.single .entry-header {
+	position: relative;
+	margin-bottom: 2.5rem;
+	padding: 2.5rem 0 2.75rem;
+	background: var(--dt-surface);
+	box-shadow: 0 0 0 100vmax var(--dt-surface);
+	clip-path: inset(0 -100vmax);
+	border-bottom: 1px solid var(--dt-line);
+}
+.page .entry-header .entry-title,
+.single .entry-header .entry-title {
+	margin: 0;
+	font-size: clamp(2.125rem, 4vw, 3rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+}
+.ast-breadcrumbs, .ast-breadcrumbs-wrapper { font-size: 0.9375rem; color: var(--dt-muted); }
+.ast-breadcrumbs a { color: var(--dt-brand); }
+
+/* ==========================================================================
+   6. Core blocks
+   ========================================================================== */
+.wp-block-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.wp-block-button__link,
+.wp-element-button,
+.ast-button,
+button.ast-button,
+input[type="submit"],
+.wp-block-search__button {
+	min-height: 52px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 24px;
+	border: 2px solid var(--dt-brand);
+	border-radius: 8px;
+	background-color: var(--dt-brand);
+	color: var(--dt-on-brand);
+	font-family: var(--dt-font);
+	font-weight: 700;
+	font-size: 1.0625rem;
+	line-height: 1.2;
+	text-decoration: none;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.wp-block-button__link:hover,
+.wp-element-button:hover,
+.ast-button:hover,
+input[type="submit"]:hover {
+	background-color: var(--dt-brand-hover);
+	border-color: var(--dt-brand-hover);
+	color: var(--dt-on-brand);
+}
+.wp-block-button.is-style-outline > .wp-block-button__link,
+.wp-block-button.is-style-outline > .wp-element-button {
+	background: transparent;
+	border-color: var(--dt-ink);
+	color: var(--dt-ink);
+}
+.wp-block-button.is-style-outline > .wp-block-button__link:hover {
+	background: var(--dt-ink);
+	border-color: var(--dt-ink);
+	color: var(--dt-paper);
+}
+
+/* Tables: header row, rules, and scrolling inside their own box. */
+.wp-block-table {
+	overflow-x: auto;
+	border: 1px solid var(--dt-line);
+	border-radius: 10px;
+	margin: 1.5em 0;
+}
+.wp-block-table table { width: 100%; border-collapse: collapse; font-size: 1.0625rem; margin: 0; }
+.wp-block-table th,
+.wp-block-table td {
+	padding: 12px 16px;
+	border: 0;
+	border-bottom: 1px solid var(--dt-line);
+	text-align: left;
+	vertical-align: top;
+}
+.wp-block-table thead th {
+	background: var(--dt-surface);
+	color: var(--dt-ink);
+	border-bottom: 2px solid var(--dt-ink);
+}
+.wp-block-table tbody tr:last-child td { border-bottom: 0; }
+.wp-block-table figcaption,
+.wp-block-table .wp-element-caption {
+	padding: 10px 16px;
+	font-size: 0.9375rem;
+	color: var(--dt-muted);
+	text-align: left;
+	margin: 0;
+	border-top: 1px solid var(--dt-line);
+}
+
+/* Details (FAQ). Keeps the browser's own open/close marker. */
+.wp-block-details {
+	border-top: 1px solid var(--dt-line);
+	border-bottom: 1px solid var(--dt-line);
+	margin: 0;
+	padding: 2px 0;
+}
+.wp-block-details + .wp-block-details { border-top: 0; }
+.wp-block-details summary {
+	min-height: 52px;
+	display: list-item;
+	padding: 13px 0;
+	font-weight: 700;
+	color: var(--dt-ink);
+	cursor: pointer;
+}
+.wp-block-details summary::marker { color: var(--dt-brand); }
+.wp-block-details > :not(summary) { margin: 0 0 1em 1.25em; }
+
+/* Columns: a gap that doesn't depend on WordPress's generated layout styles. */
+.wp-block-columns { gap: 2rem clamp(24px, 4vw, 48px); }
+
+/* Lists. */
+.entry-content ul, .entry-content ol { margin-left: 1.4em; }
+.entry-content li + li { margin-top: 0.35em; }
+
+/* Images. */
+.wp-block-image img { border-radius: 6px; }
+.wp-block-image figcaption { color: var(--dt-muted); font-size: 0.9375rem; }
+
+/* ==========================================================================
+   7. Block styles registered by the theme
+   ========================================================================== */
+
+/* Group › Notice */
+.wp-block-group.is-style-dt-notice {
+	position: relative;
+	padding: 18px 20px 18px 56px;
+	border: 1px solid var(--dt-tint-line);
+	border-radius: 10px;
+	background: var(--dt-tint);
+	color: var(--dt-ink);
+	margin: 1.5em 0;
+}
+.wp-block-group.is-style-dt-notice::before {
+	content: "";
+	position: absolute;
+	left: 20px;
+	top: 21px;
+	width: 22px;
+	height: 22px;
+	background-color: var(--dt-brand);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='7.5'/%3E%3Cpath d='M10 9v5M10 6.3v.1'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='7.5'/%3E%3Cpath d='M10 9v5M10 6.3v.1'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.wp-block-group.is-style-dt-notice > :first-child { margin-top: 0; }
+.wp-block-group.is-style-dt-notice > :last-child { margin-bottom: 0; }
+
+/* List › Contents (an "On this page" box) */
+.wp-block-list.is-style-dt-toc,
+ul.is-style-dt-toc, ol.is-style-dt-toc {
+	margin: 0 0 2em;
+	padding: 18px 22px 18px 44px;
+	border: 1px solid var(--dt-line);
+	border-radius: var(--dt-radius);
+	columns: 2 16em;
+	column-gap: 2.5em;
+	font-size: 1rem;
+	line-height: 1.45;
+}
+.is-style-dt-toc li { break-inside: avoid; margin: 0 0 0.45em; }
+
+/* Paragraph › Eyebrow label */
+p.is-style-dt-eyebrow {
+	display: inline-block;
+	margin-bottom: 1rem;
+	padding: 4px 14px;
+	border: 1px solid var(--dt-line);
+	border-radius: 999px;
+	background: var(--dt-paper);
+	color: var(--dt-muted);
+	font-size: 0.9375rem;
+	font-weight: 700;
+}
+
+/* ==========================================================================
+   8. Pattern layout (classes used by the theme's block patterns)
+   ========================================================================== */
+
+/* Full-width bands work in any Astra content layout. */
+.entry-content > .alignfull.dt-band {
+	width: 100vw;
+	max-width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+}
+.dt-wrap {
+	max-width: var(--dt-wrap);
+	margin-left: auto !important;
+	margin-right: auto !important;
+	padding-left: var(--dt-gutter);
+	padding-right: var(--dt-gutter);
+}
+.dt-band { padding-top: clamp(56px, 8vw, 96px); padding-bottom: clamp(56px, 8vw, 96px); margin-top: 0; margin-bottom: 0; }
+.dt-band + .dt-band { margin-top: 0; }
+.dt-band--surface { background: var(--dt-surface); border-top: 1px solid var(--dt-line); border-bottom: 1px solid var(--dt-line); }
+.dt-band--dark { background: var(--dt-band); color: var(--dt-band-text); }
+.dt-band--dark :where(h1, h2, h3, h4) { color: #FFFFFF; }
+.dt-band--dark p { color: var(--dt-band-text); font-size: 1.25rem; }
+.dt-band--dark a:where(:not(.wp-block-button__link)) { color: var(--dt-band-link); font-weight: 700; }
+
+/* Hero */
+.dt-hero { padding-top: clamp(48px, 7vw, 88px); padding-bottom: clamp(56px, 8vw, 96px); }
+.dt-hero .wp-block-columns { align-items: center; gap: clamp(32px, 5vw, 56px); }
+.entry-content .dt-hero-title,
+.dt-hero-title {
+	margin: 0 0 0.4em;
+	font-size: clamp(2.5rem, 5vw, 4rem);
+	line-height: 1.04;
+	letter-spacing: -0.025em;
+}
+.dt-lead,
+.entry-content p.dt-lead { font-size: clamp(1.15rem, 1.6vw, 1.3125rem); line-height: 1.55; color: var(--dt-text); }
+.dt-note { display: flex; align-items: center; gap: 8px; font-size: 1rem; color: var(--dt-muted); }
+.dt-note::before {
+	content: "";
+	flex: none;
+	width: 20px;
+	height: 20px;
+	background-color: var(--dt-brand);
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7.5'/%3E%3Cpath d='M6.8 10.2l2.2 2.2 4.3-4.6'/%3E%3C/svg%3E") center / contain no-repeat;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7.5'/%3E%3Cpath d='M6.8 10.2l2.2 2.2 4.3-4.6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Hero illustration: a printed type specimen card for the Ding That fonts.
+   The card stays white in dark mode, because it represents a printed sheet. */
+.dt-figure { position: relative; max-width: 480px; margin: 0 auto; }
+.dt-sheet {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 22px;
+	padding: 28px 28px 34px;
+	border-radius: 6px;
+	background: #FFFFFF;
+	color: #17141F;
+	box-shadow: 0 1px 2px rgba(23, 20, 31, 0.12), 0 18px 40px rgba(23, 20, 31, 0.14);
+	transform: rotate(-1.2deg);
+}
+.dt-sheet-stack {
+	position: absolute;
+	inset: 0;
+	border-radius: 6px;
+	background: #FFFFFF;
+	box-shadow: 0 1px 2px rgba(23, 20, 31, 0.10), 0 10px 26px rgba(23, 20, 31, 0.10);
+	transform: rotate(3deg) translate(14px, 6px);
+}
+.dt-sheet-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 12px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #E1DCEB;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.3;
+}
+.dt-sheet-head span { font-family: var(--dt-mono); font-size: 12px; font-weight: 500; color: #4A4458; }
+.dt-keys { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.dt-key { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.dt-key .dt-g { font-size: clamp(36px, 5vw, 52px); line-height: 1; }
+.dt-sheet kbd,
+.dt-key kbd {
+	min-width: 30px;
+	padding: 2px 8px 3px;
+	border: 1px solid #B9B2C8;
+	border-bottom-width: 3px;
+	border-radius: 6px;
+	background: #FFFFFF;
+	color: #17141F;
+	font-size: 14px;
+	text-align: center;
+}
+.dt-sheet-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.dt-window {
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: 0;
+	color: #17141F;
+	font-size: 34px;
+	line-height: 1;
+	white-space: pre;
+	overflow: visible;
+}
+.dt-shapes-line { font-size: 30px; line-height: 1; letter-spacing: 0.12em; color: #5B3CC4; white-space: nowrap; }
+.dt-dim {
+	position: absolute;
+	top: 22%;
+	left: -18px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	background: #5B3CC4;
+	color: #FFFFFF;
+	font-family: var(--dt-mono);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.2;
+	box-shadow: 0 4px 12px rgba(23, 20, 31, 0.18);
+}
+.dt-ready {
+	position: absolute;
+	right: -20px;
+	bottom: -34px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 16px;
+	border-radius: 10px;
+	background: #FFFFFF;
+	color: #17141F;
+	border: 1px solid #E1DCEB;
+	box-shadow: 0 10px 28px rgba(23, 20, 31, 0.16);
+	line-height: 1.3;
+}
+.dt-ready strong { display: block; font-size: 15px; }
+.dt-ready small { display: block; font-size: 13.5px; color: #4A4458; }
+.dt-ready svg { flex: none; }
+.dt-formats { display: flex; gap: 6px; margin-top: 6px; }
+.dt-formats span {
+	padding: 2px 6px;
+	border-radius: 3px;
+	background: #F0ECFD;
+	color: #432A99;
+	font-family: var(--dt-mono);
+	font-size: 11.5px;
+	font-weight: 600;
+}
+
+/* Background dot grid for the hero, like a type designer's layout paper. Purely decorative. */
+.dt-dotbg {
+	background-image: radial-gradient(var(--dt-dot) 1.4px, transparent 1.6px);
+	background-size: 24px 24px;
+	background-position: 12px 12px;
+}
+.dt-band--surface.dt-dotbg { background-color: var(--dt-surface); }
+.dt-band--dark {
+	background-image: radial-gradient(rgba(201, 184, 255, 0.10) 1.4px, transparent 1.6px);
+	background-size: 24px 24px;
+}
+
+/* Section intro */
+.dt-intro { max-width: 720px; margin-bottom: 2.5rem; }
+.dt-intro h2 { margin: 0 0 0.35em; font-size: clamp(1.9rem, 3.2vw, 2.5rem); }
+.dt-intro p { margin: 0; color: var(--dt-muted); }
+
+/* Cards */
+.dt-cards { gap: 24px; }
+.dt-card {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 28px;
+	border: 1px solid var(--dt-line);
+	border-radius: var(--dt-radius);
+	background: var(--dt-paper);
+}
+.dt-card > * { margin: 0 !important; }
+.dt-card h3 { font-size: 1.5rem; }
+.dt-card p:last-child { margin-top: auto !important; font-weight: 700; }
+
+/* Tag chip (decorative label) */
+.dt-chip {
+	display: inline-block;
+	padding: 4px 8px;
+	border-radius: 4px;
+	background: var(--dt-tag-gui);
+	color: #FFFFFF;
+	font-family: var(--dt-mono);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	line-height: 1.3;
+}
+.dt-chip--ink { background: #17141F; }
+.dt-chip--artifact { background: transparent; color: var(--dt-muted); border: 1.5px dashed var(--dt-tag-file); }
+p.dt-chip-row { margin: 0; }
+
+/* Steps */
+ol.dt-steps {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 24px;
+	counter-reset: dt-step;
+}
+ol.dt-steps > li {
+	counter-increment: dt-step;
+	max-width: none;
+	margin: 0;
+	display: block;
+	color: var(--dt-text);
+}
+ol.dt-steps > li::before {
+	content: counter(dt-step);
+	width: 44px;
+	height: 44px;
+	margin-bottom: 12px;
+	border-radius: 50%;
+	background: var(--dt-ink);
+	color: var(--dt-paper);
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+ol.dt-steps > li:last-child::before { background: var(--dt-brand); color: var(--dt-on-brand); }
+ol.dt-steps strong { display: block; margin-bottom: 6px; font-size: 1.25rem; color: var(--dt-ink); }
+
+/* "What every font includes" list */
+ul.dt-includes {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 18px 32px;
+}
+ul.dt-includes > li { display: flex; gap: 14px; align-items: flex-start; margin: 0; max-width: none; }
+ul.dt-includes .dt-chip { flex: none; min-width: 72px; text-align: center; margin-top: 4px; }
+
+/* Call to action box */
+.dt-cta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px 32px;
+	padding: clamp(24px, 4vw, 40px);
+	border: 2px solid var(--dt-ink);
+	border-radius: 16px;
+}
+.dt-cta > .wp-block-group:first-child { flex: 1 1 520px; }
+.dt-cta h2 { margin: 0 0 0.3em; font-size: 1.875rem; }
+.dt-cta p { margin: 0; }
+
+/* ==========================================================================
+   9. Footer (Astra footer builder)
+   ========================================================================== */
+.site-footer,
+.site-primary-footer-wrap,
+.site-above-footer-wrap,
+.site-below-footer-wrap {
+	background-color: var(--dt-surface) !important;
+	color: var(--dt-muted);
+	font-size: 1rem;
+}
+.site-footer { border-top: 1px solid var(--dt-line); }
+.site-below-footer-wrap { border-top: 1px solid var(--dt-line); }
+.site-footer a { color: var(--dt-brand); }
+.site-footer .widget-title,
+.site-footer .footer-widget-area .widget-title {
+	font-size: 0.9375rem;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--dt-muted);
+}
+.footer-nav-wrap .menu-link,
+.site-footer .ast-builder-menu .menu-link { min-height: 44px; display: flex; align-items: center; }
+.ast-footer-copyright { color: var(--dt-muted); font-size: 0.9375rem; }
+
+/* ==========================================================================
+   10. Forms
+   ========================================================================== */
+input[type="text"], input[type="email"], input[type="url"], input[type="search"],
+input[type="password"], input[type="tel"], input[type="number"], textarea, select {
+	min-height: 48px;
+	border: 1px solid #8A919C;
+	border-radius: 8px;
+	background: var(--dt-paper);
+	color: var(--dt-ink);
+	font-size: 1rem;
+}
+label { font-weight: 700; color: var(--dt-ink); }
+
+/* ==========================================================================
+   11. Responsive, motion and forced colours
+   ========================================================================== */
+@media (max-width: 781px) {
+	.dt-ready { right: 8px; bottom: -40px; }
+	.dt-figure { max-width: 320px; }
+	.dt-sheet-stack { transform: rotate(2.5deg) translate(6px, 4px); }
+	.dt-hero .wp-block-columns { gap: 56px; }
+	.wp-block-buttons > .wp-block-button { flex: 1 1 100%; }
+	.wp-block-buttons > .wp-block-button > .wp-block-button__link { width: 100%; }
+	.is-style-dt-toc { columns: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+@media (forced-colors: active) {
+	.wp-block-button__link, .ast-custom-button, .menu-toggle { border: 2px solid ButtonText !important; }
+	.dt-card, .dt-cta, .wp-block-table, .is-style-dt-toc, .is-style-dt-notice { border: 1px solid CanvasText; }
+	.dt-chip, .dt-tag { border: 1px solid CanvasText; }
+	.dt-note::before, .is-style-dt-notice::before { background-color: CanvasText; }
+	:focus-visible { outline: 3px solid Highlight !important; }
+}
+
+@media print {
+	.site-header, .site-footer, .dt-figure, .wp-block-buttons { display: none !important; }
+	.dt-band--dark { background: none; color: #000; }
+	.dt-band--dark :where(h2, p, a) { color: #000 !important; }
+	a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
+}
+
+/* ==========================================================================
+   12. Ding That extras
+   ========================================================================== */
+
+/* Glyph text: put a key in a span with one of these classes to show the picture.
+   Decorative glyphs should also get aria-hidden="true"; the [ding] shortcode does this. */
+.dt-g {
+	font-weight: 400 !important;
+	font-style: normal !important;
+	letter-spacing: 0;
+	text-transform: none;
+	font-feature-settings: normal;
+	font-synthesis: none;
+}
+.dt-g--gui { font-family: "Ding That GUI", monospace !important; }
+.dt-g--shapes { font-family: "Ding That Shapes", sans-serif !important; }
+.dt-g--objects { font-family: "Ding That Objects", sans-serif !important; }
+.dt-ding { display: inline-block; font-size: 1.15em; line-height: 1; vertical-align: -0.12em; }
+
+/* Card header glyph line ("Three fonts" cards). */
+p.dt-card-glyphs { font-size: 2.5rem; line-height: 1; letter-spacing: 0.1em; color: var(--dt-ink); white-space: nowrap; overflow: hidden; }
+
+/* Glyph gallery: tiles with a picture, its key and its name. */
+.dt-glyphs {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+	gap: 12px;
+	list-style: none;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.dt-glyphs > li {
+	display: grid;
+	grid-template-rows: 64px auto;
+	gap: 8px;
+	max-width: none;
+	margin: 0 !important;
+	padding: 12px 10px 10px;
+	border: 1px solid var(--dt-line);
+	border-radius: 10px;
+	background: var(--dt-paper);
+	font-size: 0.9375rem;
+	line-height: 1.3;
+}
+.dt-glyphs > li > .dt-g { font-size: 48px; line-height: 64px; text-align: center; color: var(--dt-ink); }
+.dt-glyphs > li > span:last-child { display: flex; align-items: center; gap: 8px; min-width: 0; color: var(--dt-muted); }
+.dt-glyphs kbd { flex: none; font-size: 0.8125rem; }
+.dt-family-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 3rem 0 1rem !important; }
+.dt-family-head:first-child { margin-top: 0 !important; }
+.dt-family-head h3 { margin: 0 !important; }
+.dt-family-head p { margin: 0 !important; color: var(--dt-muted); font-size: 1rem; }
+
+/* Character-map tables on the Fonts page: a large glyph column. */
+.wp-block-table.dt-charmap td:nth-child(2) { font-size: 2rem; line-height: 1; text-align: center; color: var(--dt-ink); }
+.wp-block-table.dt-charmap td:first-child,
+.wp-block-table.dt-charmap td:last-child { font-family: var(--dt-mono); font-size: 0.9375rem; white-space: nowrap; }
+.wp-block-table.dt-charmap th:nth-child(2) { text-align: center; }
+
+/* Box-drawing sample (GUI font): the glyphs tile, so keep lines tight. */
+pre.dt-boxdraw,
+.wp-block-preformatted.dt-boxdraw {
+	margin: 1.5em 0;
+	padding: 20px;
+	border: 1px solid var(--dt-line);
+	border-radius: var(--dt-radius);
+	background: var(--dt-paper);
+	color: var(--dt-ink);
+	font-family: "Ding That GUI", monospace;
+	font-size: 28px;
+	line-height: 1;
+	white-space: pre;
+	overflow-x: auto;
+}
+
+/* Spec row: small facts shown as a definition-style list. */
+ul.dt-specs {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 1px;
+	border: 1px solid var(--dt-line);
+	border-radius: var(--dt-radius);
+	background: var(--dt-line);
+	overflow: hidden;
+}
+ul.dt-specs > li {
+	margin: 0 !important;
+	max-width: none;
+	padding: 18px 20px;
+	background: var(--dt-paper);
+	font-size: 1rem;
+}
+ul.dt-specs strong { display: block; font-family: var(--dt-mono); font-size: 1.375rem; font-weight: 600; color: var(--dt-ink); }
+
+/* Chip aliases named after the font families. */
+.dt-chip--gui { background: var(--dt-tag-gui); }
+.dt-chip--shapes { background: var(--dt-tag-shapes); }
+.dt-chip--objects { background: var(--dt-tag-objects); }
+.dt-chip--file { background: var(--dt-tag-file); }
+
+@media (max-width: 781px) {
+	.dt-dim { left: 4px; }
+	.dt-glyphs { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+	.dt-glyphs > li > .dt-g { font-size: 40px; }
+	.dt-window { font-size: 20px; }
+	.dt-shapes-line { font-size: 24px; }
+}
+@media (forced-colors: active) {
+	.dt-glyphs > li, ul.dt-specs, pre.dt-boxdraw { border: 1px solid CanvasText; }
+	.dt-dotbg, .dt-band--dark { background-image: none; }
+}
+@media print {
+	.dt-dotbg, .dt-band--dark { background-image: none; }
+}
+
+/* ==========================================================================
+   13. Type tester ([ding_tester] shortcode)
+   ========================================================================== */
+.dt-tester { display: grid; gap: 20px; margin: 1.5em 0 2.5em; }
+.dt-tester:not(.is-ready) .dt-tester-panel { display: none; }
+.dt-tester-tabs { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 16px; border-bottom: 1px solid var(--dt-line); }
+.dt-tester-tabs button {
+	min-height: 44px;
+	padding: 0 20px;
+	border: 1px solid var(--dt-line);
+	border-radius: 999px;
+	background: var(--dt-paper);
+	color: var(--dt-ink);
+	font: 700 1rem/1 var(--dt-font);
+	cursor: pointer;
+}
+.dt-tester-tabs button:hover { border-color: var(--dt-brand); color: var(--dt-brand); }
+.dt-tester-tabs button[aria-selected="true"] { background: var(--dt-ink); border-color: var(--dt-ink); color: var(--dt-paper); }
+.dt-tester-panel {
+	display: grid;
+	gap: 18px;
+	min-width: 0;
+	padding: clamp(18px, 3vw, 28px);
+	border: 1px solid var(--dt-line);
+	border-radius: var(--dt-radius);
+	background: var(--dt-surface);
+}
+.dt-tester-panel > * { margin: 0 !important; }
+.dt-tester-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; }
+.entry-content .dt-tester-family, .dt-tester-family { margin: 0; font-size: clamp(1.6rem, 3vw, 2rem); }
+.dt-tester-count { font-family: var(--dt-mono); font-size: 0.875rem; color: var(--dt-muted); }
+.dt-tester-controls { display: grid; gap: 8px; }
+.dt-tester-text {
+	box-sizing: border-box;
+	width: 100%;
+	font-variant-ligatures: none;
+	min-height: 96px;
+	padding: 10px 12px;
+	font-family: var(--dt-mono) !important;
+	font-size: 1rem !important;
+	line-height: 1.4;
+	resize: vertical;
+}
+.dt-tester-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 6px; }
+.dt-tester-row input[type="range"] { flex: 1 1 160px; max-width: 320px; min-height: 44px; accent-color: var(--dt-brand); }
+.dt-tester-size-value { min-width: 4.5em; font-family: var(--dt-mono); font-size: 0.9375rem; color: var(--dt-muted); }
+.dt-tester-reset {
+	min-height: 44px;
+	margin-left: auto;
+	padding: 0 16px;
+	border: 2px solid var(--dt-ink);
+	border-radius: 8px;
+	background: transparent;
+	color: var(--dt-ink);
+	font: 700 0.9375rem/1 var(--dt-font);
+	cursor: pointer;
+}
+.dt-tester-reset:hover { background: var(--dt-ink); color: var(--dt-paper); }
+.dt-tester-output {
+	min-height: 1.2em;
+	padding: 18px 16px;
+	border: 1px solid var(--dt-line);
+	border-radius: 10px;
+	background: var(--dt-paper);
+	color: var(--dt-ink);
+	line-height: 1;
+	white-space: pre;
+	overflow-x: auto;
+}
+.entry-content .dt-tester-grid-title, .dt-tester-grid-title { margin: 6px 0 0 !important; font-size: 1.25rem; }
+.dt-tester-hint { color: var(--dt-muted); font-size: 1rem; }
+.dt-tester-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
+.dt-tester-cell {
+	display: grid;
+	grid-template-rows: 64px auto;
+	gap: 6px;
+	min-width: 0;
+	padding: 10px 8px 9px;
+	border: 1px solid var(--dt-line);
+	border-radius: 10px;
+	background: var(--dt-paper);
+	color: var(--dt-ink);
+	font: 400 0.875rem/1.3 var(--dt-font);
+	text-align: left;
+	cursor: pointer;
+}
+.dt-tester-cell:hover { border-color: var(--dt-brand); }
+.dt-tester-cell > .dt-g { font-size: 48px; line-height: 64px; text-align: center; white-space: pre; }
+.dt-tester-cell > span:last-child { display: flex; align-items: center; gap: 7px; min-width: 0; overflow: hidden; color: var(--dt-muted); white-space: nowrap; text-overflow: ellipsis; }
+.dt-tester-cell kbd { flex: none; font-size: 0.75rem; }
+@media (max-width: 560px) {
+	.dt-tester-grid { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); }
+	.dt-tester-cell > .dt-g { font-size: 40px; }
+	.dt-tester-reset { margin-left: 0; }
+}
+@media (forced-colors: active) {
+	.dt-tester-tabs button[aria-selected="true"] { border: 3px solid Highlight; }
+	.dt-tester-cell, .dt-tester-output, .dt-tester-panel { border: 1px solid CanvasText; }
+}
+@media print {
+	.dt-tester-tabs, .dt-tester-controls, .dt-tester-grid, .dt-tester-hint, .dt-tester-grid-title { display: none !important; }
+}

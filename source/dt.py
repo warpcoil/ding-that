@@ -1,4 +1,4 @@
-"""DingThats glyph toolkit: tiny vector DSL + font builder (OTF/TTF/WOFF2/SVG)."""
+"""Ding That glyph toolkit: tiny vector DSL + font builder (OTF/TTF/WOFF2/SVG)."""
 import math, os
 from pathops import Path, PathOp, op
 from fontTools.pens.transformPen import TransformPen
@@ -196,12 +196,12 @@ def build(gs, family, psbase, outdir, mono=False, version="1.000"):
     lic = ("This Font Software is licensed under the SIL Open Font License, Version 1.1. "
            "This license is available with a FAQ at: https://openfontlicense.org")
     names = dict(
-        copyright="Copyright 2026 The DingThats Project Authors (https://dingthat.com)",
+        copyright="Copyright 2026 The Ding That Project Authors (https://dingthat.com)",
         familyName=family, styleName="Regular",
         uniqueFontIdentifier=f"{version};DING;{psbase}-Regular",
         fullName=f"{family} Regular", psName=f"{psbase}-Regular",
-        version=f"Version {version}", manufacturer="DingThats Project",
-        designer="DingThats Project", vendorURL="https://dingthat.com",
+        version=f"Version {version}", manufacturer="Ding That Project",
+        designer="Ding That Project", vendorURL="https://dingthat.com",
         designerURL="https://dingthat.com", licenseDescription=lic,
         licenseInfoURL="https://openfontlicense.org",
     )
